@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-labelledby="title desc">
+  <title id="title">osint-rail</title>
+  <desc id="desc">Dark banner: osint-rail, one seed in, a sourced dossier out. 24 connectors, no API keys, every claim carries its source.</desc>
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4cc2ff"/>
+      <stop offset="0.55" stop-color="#2dd4a7"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1526"/>
+      <stop offset="1" stop-color="#080d18"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="320" fill="url(#band)"/>
+  <rect width="1280" height="6" fill="url(#accent)"/>
+
+  <!-- left: wordmark -->
+  <text x="72" y="82" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" letter-spacing="3.4" fill="#5f7396">KEYLESS · STDLIB ONLY · MIT</text>
+  <text x="68" y="168" font-family="Inter, ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2.5" fill="#f2f6ff">osint-rail</text>
+  <text x="74" y="212" font-family="Inter, ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="27" fill="#9fb3d1">one seed in, a sourced dossier out</text>
+  <text x="74" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#64789b">24 connectors · no API keys · every claim carries its source</text>
+
+  <!-- right: seed fans out into evidence rows -->
+  <circle cx="930" cy="62" r="9" fill="#4cc2ff"/>
+  <circle cx="930" cy="62" r="18" fill="none" stroke="#4cc2ff" stroke-opacity="0.22" stroke-width="1.5"/>
+
+  <g fill="none" stroke="#2a3d5f" stroke-width="1.6">
+    <path d="M948 66 C 972 66, 972 104, 996 104"/>
+    <path d="M948 66 C 972 66, 972 144, 996 144"/>
+    <path d="M948 66 C 972 66, 972 184, 996 184"/>
+  </g>
+
+  <g>
+    <rect x="996" y="90" width="228" height="28" rx="6" fill="#111a2c" stroke="#1e2b45"/>
+    <circle cx="1012" cy="104" r="3.2" fill="#2dd4a7"/>
+    <rect x="1026" y="99" width="96" height="4" rx="2" fill="#33456a"/>
+    <rect x="1026" y="107" width="58" height="3" rx="1.5" fill="#22304d"/>
+    <rect x="1168" y="98" width="42" height="12" rx="6" fill="#123027"/>
+
+    <rect x="996" y="130" width="228" height="28" rx="6" fill="#111a2c" stroke="#1e2b45"/>
+    <circle cx="1012" cy="144" r="3.2" fill="#2dd4a7"/>
+    <rect x="1026" y="139" width="118" height="4" rx="2" fill="#33456a"/>
+    <rect x="1026" y="147" width="44" height="3" rx="1.5" fill="#22304d"/>
+    <rect x="1168" y="138" width="42" height="12" rx="6" fill="#123027"/>
+
+    <rect x="996" y="170" width="228" height="28" rx="6" fill="#111a2c" stroke="#1e2b45"/>
+    <circle cx="1012" cy="184" r="3.2" fill="#f0b34c"/>
+    <rect x="1026" y="179" width="72" height="4" rx="2" fill="#33456a"/>
+    <rect x="1026" y="187" width="104" height="3" rx="1.5" fill="#22304d"/>
+    <rect x="1168" y="178" width="42" height="12" rx="6" fill="#332512"/>
+  </g>
+
+  <text x="996" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#5f7396">every row: url · fetched_at · excerpt</text>
+  <text x="996" y="262" font-family="Inter, ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#64789b">
+    <tspan fill="#2dd4a7">matched</tspan>
+    <tspan fill="#3d5276"> / </tspan>
+    <tspan fill="#f0b34c">unknown</tspan>
+    <tspan fill="#3d5276"> / </tspan>
+    <tspan fill="#8fa3c8">absent</tspan>
+    <tspan fill="#3d5276">, never guessed</tspan>
+  </text>
+</svg>
