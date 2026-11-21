@@ -269,6 +269,14 @@ $ pytest -q
 98 passed in 3.20s
 ```
 
+## Part of the keyless stack
+
+Public data for agents, with receipts. No API key anywhere:
+
+- **[reddit-rail](https://github.com/shattradingle/reddit-rail)** — Reddit research for your agent: search threads and read whole comment trees.
+- **[osint-rail](https://github.com/shattradingle/osint-rail)** — one seed in, a sourced dossier out, every claim with its URL.
+- **[receipts](https://github.com/shattradingle/receipts)** — a research desk that only quotes what it fetched.
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE). The username sweep reads community data sets that keep their
