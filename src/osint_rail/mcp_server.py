@@ -70,6 +70,9 @@ class McpServer:
         self.transport = transport
         self.store = Store(db_path)
 
+    def close(self) -> None:
+        self.store.close()
+
     # -- jsonrpc -------------------------------------------------------
     def handle(self, request: dict) -> dict | None:
         method = request.get("method", "")

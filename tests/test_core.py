@@ -48,7 +48,7 @@ class SeedTests(unittest.TestCase):
 
 class StoreTests(unittest.TestCase):
     def test_roundtrip(self):
-        with tempfile.TemporaryDirectory() as td:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as td:
             store = Store(Path(td) / "cases.db")
             case = store.create_case(Seed("username", "bob"), {"x": 1})
             self.assertIsNotNone(store.get_case(case.id))
@@ -61,6 +61,7 @@ class StoreTests(unittest.TestCase):
             self.assertEqual(store.stats(case.id)["requests"], 1)
 
 
+            store.close()
 class ResolveTests(unittest.TestCase):
     def test_deterministic_entities(self):
         claims = [
@@ -89,7 +90,7 @@ class ResolveTests(unittest.TestCase):
 
 class EngineTests(unittest.TestCase):
     def test_bfs_stores_claims_and_queues(self):
-        with tempfile.TemporaryDirectory() as td:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as td:
             store = Store(Path(td) / "c.db")
             with mock.patch("osint_rail.engine.connectors_for",
                             side_effect=lambda kind: [FakeConnector()] if kind == "username" else []):
@@ -99,13 +100,15 @@ class EngineTests(unittest.TestCase):
             self.assertEqual([s.key() for s in result.queued], ["email:jane@example.test"])
             self.assertIn("https://example.test/u", render_markdown(result))
 
+            store.close()
     def test_depth_zero_runs_only_root(self):
-        with tempfile.TemporaryDirectory() as td:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as td:
             store = Store(Path(td) / "c.db")
             with mock.patch("osint_rail.engine.connectors_for", return_value=[FakeConnector()]):
                 result = Engine(store, RunOptions(max_depth=0)).run(Seed("username", "janedoe"))
             self.assertEqual(result.queued, [])
 
+            store.close()
     def test_suggest_pivots_from_claims(self):
         claims = [claim(kind="contact", predicate="email", value="x@y.co", source="github")]
         seeds = [s for s, _ in suggest_pivots(Seed("username", "bob"), claims, [])]
@@ -114,7 +117,7 @@ class EngineTests(unittest.TestCase):
 
 class ReportTests(unittest.TestCase):
     def test_graph_and_table(self):
-        with tempfile.TemporaryDirectory() as td:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as td:
             store = Store(Path(td) / "c.db")
             with mock.patch("osint_rail.engine.connectors_for", return_value=[FakeConnector()]):
                 result = Engine(store, RunOptions(max_depth=0)).run(Seed("username", "janedoe"))
@@ -126,11 +129,12 @@ class ReportTests(unittest.TestCase):
             self.assertTrue(graph["elements"]["edges"])
 
 
+            store.close()
 class McpTests(unittest.TestCase):
     def test_initialize_and_tools(self):
         from osint_rail.mcp_server import McpServer
 
-        with tempfile.TemporaryDirectory() as td:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as td:
             server = McpServer(str(Path(td) / "c.db"))
             init = server.handle({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}})
             self.assertEqual(init["result"]["serverInfo"]["name"], "osint-rail")
@@ -139,6 +143,7 @@ class McpTests(unittest.TestCase):
             self.assertEqual(names, {"osint_case", "osint_show", "osint_connectors"})
             bad = server.handle({"jsonrpc": "2.0", "id": 3, "method": "nope"})
             self.assertEqual(bad["error"]["code"], -32601)
+            server.close()
 
 
 class CliTests(unittest.TestCase):
